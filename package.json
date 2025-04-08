@@ -13,7 +13,7 @@
     "animejs": "^3.2.2",
     "axios": "^1.8.3",
     "flowbite-react": "^0.10.2",
-    "https-proxy-middleware": "^3.0.3",
+    "http-proxy-middleware": "^3.0.3",
     "keen-slider": "^6.8.6",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
