@@ -26,20 +26,22 @@ export default async function handler(req, res) {
         host: "", 
       },
       body: req.method !== "GET" ? JSON.stringify(req.body) : undefined,
-      agent, 
+      agent: new https.Agent({ rejectUnauthorized: false }),
     });
-
+  
+    const body = await response.text();
+  
     res.status(response.status);
     response.headers.forEach((value, key) => {
       res.setHeader(key, value);
     });
-
-    const body = await response.text();
     res.send(body);
+  
   } catch (error) {
+    console.error("Proxy failed:", error); 
     res.status(500).json({
       error: "Proxy request failed",
       message: error.message,
     });
-  }
+  }  
 }
