@@ -1,15 +1,15 @@
 export default async function handler(req, res) {
-    const url = req.query.url;
-    const allowedDomain = "api.pusb.or.id";
-    const urlObj = new URL(url);
-
-    if (urlObj.hostname !== allowedDomain) {
-    return res.status(403).json({ error: "Unauthorized domain" });
-    }
-
+    const { url } = req.query;
   
     if (!url) {
       return res.status(400).json({ error: "Missing URL parameter" });
+    }
+  
+    const parsedUrl = new URL(url);
+    const allowedDomain = "api.pusb.or.id";
+  
+    if (parsedUrl.hostname !== allowedDomain) {
+      return res.status(403).json({ error: "Unauthorized domain" });
     }
   
     try {
@@ -22,12 +22,18 @@ export default async function handler(req, res) {
         body: req.method !== "GET" ? JSON.stringify(req.body) : undefined,
       });
   
-      const data = await response.text();
+      res.status(response.status);
+      response.headers.forEach((value, key) => {
+        res.setHeader(key, value);
+      });
   
-      res.setHeader("Content-Type", response.headers.get("content-type") || "application/json");
-      res.status(response.status).send(data);
+      const body = await response.text();
+      res.send(body);
     } catch (error) {
-      res.status(500).json({ error: "Proxy request failed", details: error.message });
+      res.status(500).json({
+        error: "Proxy request failed",
+        message: error.message,
+      });
     }
   }
   
