@@ -10,7 +10,6 @@ const Page = () => {
   const [cnc, setCnc] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Format Instagram URL
   const formatInstagramUrl = (handle) => {
     if (!handle) return "#";
     if (handle.startsWith("http")) return handle;

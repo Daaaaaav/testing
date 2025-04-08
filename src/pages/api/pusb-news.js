@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BaseUrl } from "../../config/config";
+import { buildProxiedUrl } from "../../config/config";
 
 export async function GetPUSBNews() {
   try {
-    const response = await axios.get(`${BaseUrl}/news`);
-    return response.data.data;
+    const response = await axios.get(buildProxiedUrl("/news"));
+    return response.data?.data;
   } catch (err) {
     throw new Error(`Fetch failed: ${err.message}`);
   }
@@ -12,7 +12,7 @@ export async function GetPUSBNews() {
 
 export const GetPUSBNewsBySlug = async (slug) => {
   try {
-    const response = await axios.get(`${BaseUrl}/news/${slug}`);
+    const response = await axios.get(buildProxiedUrl(`/news/${slug}`));
     return response.data?.data[0];
   } catch (error) {
     if (axios.isAxiosError(error)) {

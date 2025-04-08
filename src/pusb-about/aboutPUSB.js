@@ -16,7 +16,7 @@ const PUSBPage = () => {
     fetchProfile();
   }, []);
 
-  if (!profilePUSB) return <p>Loading...</p>; // Loading state
+  if (!profilePUSB) return <p>Loading...</p>; 
 
   return (
     <main className="w-full min-h-screen">

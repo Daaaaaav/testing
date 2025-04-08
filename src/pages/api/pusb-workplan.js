@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BaseUrl } from "./pusb/config/config";
+import { buildProxiedUrl } from "./pusb/config/config";
 
 export const GetPUSBWorkplan = async () => {
   try {
-    const response = await axios.get(`${BaseUrl}/workplan_category`);
+    const response = await axios.get(buildProxiedUrl("/workplan_category"));
     return response.data?.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -17,7 +17,7 @@ export const GetPUSBWorkplan = async () => {
 
 export const GetPUSBWorkplanById = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/workplan_category/${id}`);
+    const response = await axios.get(buildProxiedUrl(`/workplan_category/${id}`));
     return response.data?.data[0];
   } catch (error) {
     if (axios.isAxiosError(error)) {

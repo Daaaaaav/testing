@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BaseUrl } from "../../config/config";
+import { buildProxiedUrl } from "../../config/config";
 
 export const GetPUSBCNC = async () => {
   try {
-    const response = await axios.get(`${BaseUrl}/cnc`);
+    const response = await axios.get(buildProxiedUrl("/cnc"));
     return response.data?.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -17,7 +17,7 @@ export const GetPUSBCNC = async () => {
 
 export const GetPUSBCNCById = async (id) => {
   try {
-    const response = await axios.get(`${BaseUrl}/cnc/${id}`);
+    const response = await axios.get(buildProxiedUrl(`/cnc/${id}`));
     const data = response.data?.data;
     console.log("Fetched CNC raw data:", data);
     if (Array.isArray(data) && data.length > 0 && typeof data[0] === "object") {
@@ -37,7 +37,8 @@ export const GetPUSBCNCById = async (id) => {
 
 export const GetPUSBCNCWorkplanByCnCId = async (cncId) => {
   try {
-    const response = await axios.get(`${BaseUrl}/cnc/${cncId}/workplan`);
+    const url = buildProxiedUrl(`/cnc/${cncId}/workplan`);
+    const response = await axios.get(url);
     return response.data?.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -49,11 +50,11 @@ export const GetPUSBCNCWorkplanByCnCId = async (cncId) => {
   return null;
 };
 
+
 export const GetPUSBCNCWorkplanById = async (cncId, workplanId) => {
   try {
-    const response = await axios.get(
-      `${BaseUrl}/cnc/${cncId}/workplan/${workplanId}`
-    );
+    const url = buildProxiedUrl(`/cnc/${cncId}/workplan/${workplanId}`);
+    const response = await axios.get(url);
     return response.data?.data[0];
   } catch (error) {
     if (axios.isAxiosError(error)) {
