@@ -21,7 +21,7 @@ const Footer = () => {
 
     fetchProfile();
   }, []);
-  
+
   if (error) {
     return <div className="text-center text-red-500">{error}</div>;
   }
@@ -73,36 +73,46 @@ const Footer = () => {
                 href={profilePUSB?.instagram ?? "https://www.instagram.com/pusbpresuniv"}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.instagram ?? "@pusbpresuniv"}
+                <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />
+                <span className="inline lg:hidden">{profilePUSB?.instagram ?? "@pusbpresuniv"}</span>
               </a>
               <a
                 href={profilePUSB?.linkedin ?? "https://www.linkedin.com/company/president-university-student-union/"}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.linkedin ?? "President University Student Board"}
+                <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />
+                <span className="inline lg:hidden">{profilePUSB?.linkedin ?? "President University Student Board"}</span>
               </a>
               <a
                 href={profilePUSB?.twitter ?? "https://x.com/pusupresuniv"}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.twitter ?? "@pusupresuniv"}
+                <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />
+                <span className="inline lg:hidden">{profilePUSB?.twitter ?? "@pusupresuniv"}</span>
               </a>
               <a
                 href={profilePUSB?.youtube ?? "https://www.youtube.com/@PUSB_PresidentUniversity"}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.youtube ?? "@PUSB_PresidentUniversity"}
+                <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />
+                <span className="inline lg:hidden">{profilePUSB?.youtube ?? "@PUSB_PresidentUniversity"}</span>
               </a>
               <a
                 href={profilePUSB?.podcast ?? "https://open.spotify.com/show/5CnFz5rV7STWOZpn0m7cn6"}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.podcast ?? "PUSB Broadtalk"}
+                <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />
+                <span className="inline lg:hidden">{profilePUSB?.podcast ?? "PUSB Broadtalk"}</span>
               </a>
             </div>
           </div>

@@ -110,7 +110,7 @@ export const eventsHighlightPUSB = [
     eventName: "Grant of Hopes",
     eventDesc:
       "Grant of Hopes is a social event that aims to raise funds and donations for children and people in need. The event will collect money and goods through sponsorships, donations, and fundraising activities to make a positive impact on the community. The event includes social activities such as visiting foundations or orphanages to engage in meaningful interactions and support those in need. The goal is to inspire kindness and encourage people to take action to help others. This event hopes to create a memorable experience for everyone involved, spreading happiness and providing support to those who need it most.",
-    eventTimeline: "Soon",
+    eventTimeline: "Completed",
     eventPresents: null,
     isPresent: false,
     ministry: "MOSA",
