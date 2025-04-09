@@ -74,35 +74,35 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />
+                <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.instagram ?? "@pusbpresuniv"}
               </a>
               <a
                 href={profilePUSB?.linkedin ?? "https://www.linkedin.com/company/president-university-student-union/"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />
+                <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.linkedin ?? "President University Student Board"}
               </a>
               <a
                 href={profilePUSB?.twitter ?? "https://x.com/pusupresuniv"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />
+                <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.twitter ?? "@pusupresuniv"}
               </a>
               <a
                 href={profilePUSB?.youtube ?? "https://www.youtube.com/@PUSB_PresidentUniversity"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />
+                <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.youtube ?? "@PUSB_PresidentUniversity"}
               </a>
               <a
                 href={profilePUSB?.podcast ?? "https://open.spotify.com/show/5CnFz5rV7STWOZpn0m7cn6"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />
+                <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />{profilePUSB?.podcast ?? "PUSB Broadtalk"}
               </a>
             </div>
           </div>
