@@ -1,16 +1,15 @@
 import axios from "axios";
+import { buildProxiedUrl } from "../../config/config";
 
-const BaseUrl = process.env.REACT_APP_API_BASE_URL;
-
-export const GetPUSBNews = async () => {
+export const GetPUSBCNC = async () => {
   try {
-    const response = await axios.get(`${BaseUrl}/news`);
+    const response = await axios.get(buildProxiedUrl("/cnc"));
     return response.data?.data;
   } catch (error) {
-    if (error.response) {
-      console.error("API Error:", error.response);
+    if (axios.isAxiosError(error)) {
+      console.log(error.response);
     } else {
-      console.error("Unexpected Error:", error);
+      console.log(error);
     }
   }
   return null;
