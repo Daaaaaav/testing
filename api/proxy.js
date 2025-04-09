@@ -15,33 +15,36 @@ export default async function handler(req, res) {
   }
 
   const agent = new https.Agent({
-    rejectUnauthorized: false, 
+    rejectUnauthorized: false,
   });
 
+  const { host, ...forwardedHeaders } = req.headers;
+
   try {
+    console.log("Proxying request to:", url);
+
     const response = await fetch(url, {
       method: req.method,
-      headers: {
-        ...req.headers,
-        host: "", 
-      },
+      headers: forwardedHeaders,
       body: req.method !== "GET" ? JSON.stringify(req.body) : undefined,
-      agent: new https.Agent({ rejectUnauthorized: false }),
+      agent,
     });
-  
+
     const body = await response.text();
-  
-    res.status(response.status);
+
+    console.log("Response status:", response.status);
+    console.log("Raw response body:", body);
+
     response.headers.forEach((value, key) => {
       res.setHeader(key, value);
     });
-    res.send(body);
-  
+
+    res.status(response.status).send(body);
   } catch (error) {
-    console.error("Proxy failed:", error); 
+    console.error("Proxy failed:", error);
     res.status(500).json({
       error: "Proxy request failed",
       message: error.message,
     });
-  }  
+  }
 }

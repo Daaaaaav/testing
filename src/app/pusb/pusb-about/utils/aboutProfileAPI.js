@@ -1,17 +1,17 @@
-import axios from "axios";
-import { buildProxiedUrl } from "../../../../config/config";
-
-export const GetPUSBProfile = async () => {
+export async function GetPUSBProfile() {
   try {
-    const response = await axios.get(buildProxiedUrl("/profile"));
-    console.log("API Response:", response.data);
-    return response.data?.data?.[0];
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log("API Error:", error.response);
-    } else {
-      console.log("General Error:", error);
-    }
+    const proxyUrl = `/api/proxy?url=${encodeURIComponent("https://api.pusb.or.id/v1/profile")}`;
+    const res = await fetch(proxyUrl);
+
+    console.log("Proxy response status:", res.status);
+    const text = await res.text();
+    console.log("Raw proxy response:", text);
+
+    const data = JSON.parse(text);
+    return data;
+  } catch (err) {
+    console.error("Error fetching PUSB Profile:", err);
+    return null;
   }
-  return null;
-};
+}
+
