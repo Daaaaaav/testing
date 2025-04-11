@@ -9,7 +9,8 @@ import sanctusLogo from "../../../../assets/sanctusLogo.png";
 const fallbackProfile = {
   cabinet_logo: sanctusLogo,
   cabinet_name: "Sanctus Cabinet",
-  vision: "PUSB (President University Student Board) cultivates a vibrant and inclusive student organization at President University, providing a sanctuary where every PresUnivers feels safe, respected, and empowered to thrive, grow, and make a positive impact. Through both on-campus and off-campus collaborations, we collectively aim to inspire and support PresUnivers in becoming influential leaders, dedicated to the betterment of Indonesia.",
+  vision:
+    "PUSB (President University Student Board) cultivates a vibrant and inclusive student organization at President University, providing a sanctuary where every PresUnivers feels safe, respected, and empowered to thrive, grow, and make a positive impact. Through both on-campus and off-campus collaborations, we collectively aim to inspire and support PresUnivers in becoming influential leaders, dedicated to the betterment of Indonesia.",
 };
 
 const fallbackMissions = [
@@ -25,28 +26,26 @@ const PUSBPage = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      try {
-        const data = await GetPUSBProfile();
+      const data = await GetPUSBProfile();
 
-        console.log("API Response:", data);
+      if (!data) {
+        setError("Using fallback profile due to empty or failed API.");
+        setProfilePUSB(fallbackProfile);
+      } else {
         setProfilePUSB({
           ...fallbackProfile,
-          ...(data || {}),
+          ...data,
         });
-      } catch (err) {
-        console.error("Failed to fetch profile:", err.message);
-        setError(err.message);
-        setProfilePUSB(fallbackProfile);
-      } finally {
-        setLoading(false);
       }
+
+      setLoading(false);
     };
 
     fetchProfile();
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-500">Error: {error}</p>;
+  if (error) console.warn(error);
 
   return (
     <main className="w-full min-h-screen">
